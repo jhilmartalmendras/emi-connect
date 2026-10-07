@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   EMI Connect - estilos base
+   Identidad visual: azul institucional, dorado academico y grises.
+   ============================================================ */
+
+:root {
+  --emi-azul-900: #0b2039;
+  --emi-azul-700: #163d70;
+  --emi-azul-500: #2a63ab;
+  --emi-dorado: #d4a017;
+  --emi-gris-fondo: #f4f7fb;
+  --emi-borde: #e2e9f2;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--emi-gris-fondo);
+  color: #102c52;
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modo oscuro */
+.dark body {
+  background-color: #071426;
+  color: #d7e5f5;
+}
+
+/* Contenedores reutilizables */
+@layer components {
+  .tarjeta {
+    @apply rounded-xl border border-emi-100 bg-white shadow-suave dark:border-emi-800 dark:bg-emi-900;
+  }
+
+  .tarjeta-interactiva {
+    @apply tarjeta transition-all duration-200 hover:-translate-y-0.5 hover:shadow-tarjeta;
+  }
+
+  .campo-entrada {
+    @apply w-full rounded-lg border border-emi-200 bg-white px-3 py-2 text-sm text-emi-900 outline-none transition
+      placeholder:text-emi-400 focus:border-emi-500 focus:ring-2 focus:ring-emi-100
+      dark:border-emi-700 dark:bg-emi-950 dark:text-emi-50 dark:placeholder:text-emi-500 dark:focus:ring-emi-800;
+  }
+
+  .enlace {
+    @apply text-emi-600 underline-offset-2 transition hover:text-emi-800 hover:underline dark:text-emi-300 dark:hover:text-emi-100;
+  }
+
+  .insignia {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+
+  .separador {
+    @apply border-t border-emi-100 dark:border-emi-800;
+  }
+
+  .texto-secundario {
+    @apply text-sm text-emi-500 dark:text-emi-300;
+  }
+
+  .titulo-seccion {
+    @apply text-lg font-semibold text-emi-900 dark:text-emi-50;
+  }
+}
+
+/* Barras de desplazamiento discretas y compatibles con navegadores antiguos */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b0cbea transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #c3d7ee;
+  border: 3px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+  background-color: #163d70;
+}
+
+/* Accesibilidad: foco visible para navegacion con teclado */
+:focus-visible {
+  outline: 2px solid var(--emi-dorado);
+  outline-offset: 2px;
+}
+
+/* Oculta visualmente pero mantiene accesible para lectores de pantalla */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Animacion de entrada para listas y tarjetas */
+.animar-entrada {
+  animation: aparecer 0.25s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Las imagenes nunca se desbordan en pantallas pequenas */
+img {
+  max-width: 100%;
+  height: auto;
+}
